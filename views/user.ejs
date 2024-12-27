@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("partials/head",{title:"使用者"}) %>
+  <body>
+    <%- include("partials/nav") %>
+    <!-- <form action="/logout" method="post">
+      <button type="submit">登出</button>
+    </form> -->
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <h2 class="text-2xl font-bold text-gray-600 p-4">
+        Hello, <%= user.name %>
+      </h2>
+      <h2 class="text-2xl font-bold text-gray-600 p-4">登入成功</h2>
+
+      <% if(user.email){ %>
+      <h2 class="text-2xl font-bold text-gray-600 p-4">
+        your email is <%= user.email %>
+      </h2>
+      <% } %>
+    </div>
+  </body>
+  <script>
+    const logout = () => {
+      fetch("/logout", {
+        method: "POST",
+        credentials: "include", //如果使用cookie做認證
+      })
+        .then((r) => {
+          if (r.ok) {
+            window.location.href = "/";
+          }
+        })
+        .catch((er) => {
+          console("登出錯誤:", er);
+        });
+    };
+  </script>
+</html>

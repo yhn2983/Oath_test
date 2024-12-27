@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>google oAuth</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div id="f1"></div>
+    <!-- <form action="/login" method="post">
+      <button type="submit">登入</button>
+    </form>
+    <form action="/logout" method="post">
+      <button type="submit">登出</button>
+    </form> -->
+
+    <script>
+      const checktoken = () => {
+        const cookies = document.cookie
+          .split(";")
+          .map((v) => v.trim())
+          .filter((v) => v.startsWith("token"));
+
+        return cookies.length > 0;
+      };
+
+      if (checktoken()) {
+        document.querySelector("#f1").innerHTML = `
+          <form action="/logout" method="post">
+            <button type="submit">登出</button>
+          </form>`;
+      } else {
+        document.querySelector("#f1").innerHTML = `
+        <form action="/login" method="post">
+      <button type="submit"><i class="fa-brands fa-google"></i></button>
+    </form>
+     <form action="/githubLogin" method="post">
+      <button type="submit"><i class="fa-brands fa-github"></i></button>
+    </form>
+        `;
+      }
+    </script>
+  </body>
+</html>
